@@ -33,6 +33,8 @@
 #pragma mark - URL Request Info
 - (void)URLSetup
 {
+    self.flickrArray = [NSMutableArray array];
+    
     NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=cats"];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     
@@ -49,13 +51,8 @@
             NSDictionary *photoDictionary = jsonDictionary[@"photos"];
             NSMutableArray *photoArray = photoDictionary[@"photo"];
             
-//            self.flickrArray = photoArray;
-            
             for (NSDictionary *flickr in photoArray)
             {
-                // initialize photo object (Flickr.h) with dictionary above
-                
-                // Download image
                 Flickr * image = [[Flickr alloc] initWithDictionary:flickr];
                 [self.flickrArray addObject:image];
             }
@@ -83,11 +80,28 @@
 {
     FlickrCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     
-    NSDictionary *repo = self.flickrArray[indexPath.item];
+    Flickr *repo = self.flickrArray[indexPath.item];
     
-    cell.flickrLabel.text = repo[@"title"];
+    cell.flickrLabel.text = [repo title];
     cell.flickrLabel.lineBreakMode = NSLineBreakByWordWrapping; // Word wraps title into the label
-//    cell.flickrImage.image = 
+
+    NSURL *imageURL = [repo imageURL];
+    
+    NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:imageURL];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            UIImage *someImage = [UIImage imageWithData:data];
+            cell.flickrImage.image = someImage;
+        }];
+    }];
+    
+    [dataTask resume];
     
     return cell;
 }

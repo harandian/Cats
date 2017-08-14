@@ -17,5 +17,6 @@
 @property (nonatomic, strong) NSString *title;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (NSURL *)imageURL;
 
 @end
