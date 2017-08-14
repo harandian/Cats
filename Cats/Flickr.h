@@ -10,12 +10,12 @@
 #import <UIKit/UIKit.h>
 
 @interface Flickr : NSObject
-@property (nonatomic, weak) NSString *server;
-@property (nonatomic, weak) NSString *farm;
-@property (nonatomic, weak) NSString *photoID;
-@property (nonatomic, weak) NSString *secret;
-@property (nonatomic, weak) NSString *title;
+@property (nonatomic, strong) NSString *server;
+@property (nonatomic, strong) NSString *farm;
+@property (nonatomic, strong) NSString *photoID;
+@property (nonatomic, strong) NSString *secret;
+@property (nonatomic, strong) NSString *title;
 
-- (instancetype)initWithFarm:(NSString *)farm andServerID:(NSString *)photoID andServer:(NSString *)server andSecret:(NSString *)secret andTitle:(NSString *)title;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 @end

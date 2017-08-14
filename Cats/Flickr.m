@@ -9,15 +9,15 @@
 #import "Flickr.h"
 
 @implementation Flickr
-- (instancetype)initWithFarm:(NSString *)farm andServerID:(NSString *)photoID andServer:(NSString *)server andSecret:(NSString *)secret andTitle:(NSString *)title
-{
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     if (self = [super init])
     {
-        _farm = farm;
-        _photoID = photoID;
-        _server = server;
-        _secret = secret;
-        _title = title;
+        _farm = [dictionary objectForKey:@"farm"];
+        _photoID = [dictionary objectForKey:@"id"];
+        _server = [dictionary objectForKey:@"server"];
+        _secret = [dictionary objectForKey:@"secret"];
+        _title = [dictionary objectForKey:@"title"];
     }
     return self;
 }

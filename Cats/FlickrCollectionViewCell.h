@@ -10,7 +10,7 @@
 #import "Flickr.h"
 
 @interface FlickrCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *flickrImage;
-@property (weak, nonatomic) IBOutlet UILabel *flickrLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *flickrImage;
+@property (strong, nonatomic) IBOutlet UILabel *flickrLabel;
 
 @end

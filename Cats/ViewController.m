@@ -12,8 +12,8 @@
 
 @interface ViewController () <UICollectionViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) NSMutableArray *flickrArray;
+@property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) NSMutableArray *flickrArray;
 
 @end
 
@@ -49,11 +49,15 @@
             NSDictionary *photoDictionary = jsonDictionary[@"photos"];
             NSMutableArray *photoArray = photoDictionary[@"photo"];
             
-            self.flickrArray = photoArray;
+//            self.flickrArray = photoArray;
             
             for (NSDictionary *flickr in photoArray)
             {
+                // initialize photo object (Flickr.h) with dictionary above
                 
+                // Download image
+                Flickr * image = [[Flickr alloc] initWithDictionary:flickr];
+                [self.flickrArray addObject:image];
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.collectionView reloadData];
@@ -78,8 +82,13 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     FlickrCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
+    
     NSDictionary *repo = self.flickrArray[indexPath.item];
+    
     cell.flickrLabel.text = repo[@"title"];
+    cell.flickrLabel.lineBreakMode = NSLineBreakByWordWrapping; // Word wraps title into the label
+//    cell.flickrImage.image = 
+    
     return cell;
 }
 
