@@ -16,6 +16,9 @@
 		6AEC7FD91F422124000BBD04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC7FD71F422124000BBD04 /* LaunchScreen.storyboard */; };
 		6AEC7FE21F422B64000BBD04 /* Flickr.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC7FE11F422B64000BBD04 /* Flickr.m */; };
 		6AEC7FE51F422B75000BBD04 /* FlickrCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC7FE41F422B75000BBD04 /* FlickrCollectionViewCell.m */; };
+		722EDA501F4379560093CB7F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722EDA4F1F4379560093CB7F /* MapKit.framework */; };
+		722EDA521F43795B0093CB7F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722EDA511F43795B0093CB7F /* CoreLocation.framework */; };
+		722EDA551F438D260093CB7F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 722EDA541F438D260093CB7F /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,10 @@
 		6AEC7FE11F422B64000BBD04 /* Flickr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flickr.m; sourceTree = "<group>"; };
 		6AEC7FE31F422B75000BBD04 /* FlickrCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlickrCollectionViewCell.h; sourceTree = "<group>"; };
 		6AEC7FE41F422B75000BBD04 /* FlickrCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlickrCollectionViewCell.m; sourceTree = "<group>"; };
+		722EDA4F1F4379560093CB7F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		722EDA511F43795B0093CB7F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		722EDA531F438D260093CB7F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		722EDA541F438D260093CB7F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				722EDA521F43795B0093CB7F /* CoreLocation.framework in Frameworks */,
+				722EDA501F4379560093CB7F /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +61,7 @@
 			children = (
 				6AEC7FC51F422124000BBD04 /* Cats */,
 				6AEC7FC41F422124000BBD04 /* Products */,
+				722EDA4E1F4379550093CB7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +81,8 @@
 				6AEC7FCC1F422124000BBD04 /* ViewController.h */,
 				6AEC7FCD1F422124000BBD04 /* ViewController.m */,
 				6AEC7FCF1F422124000BBD04 /* Main.storyboard */,
+				722EDA531F438D260093CB7F /* DetailViewController.h */,
+				722EDA541F438D260093CB7F /* DetailViewController.m */,
 				6AEC7FE01F422B64000BBD04 /* Flickr.h */,
 				6AEC7FE11F422B64000BBD04 /* Flickr.m */,
 				6AEC7FE31F422B75000BBD04 /* FlickrCollectionViewCell.h */,
@@ -90,6 +102,15 @@
 				6AEC7FC71F422124000BBD04 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		722EDA4E1F4379550093CB7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				722EDA511F43795B0093CB7F /* CoreLocation.framework */,
+				722EDA4F1F4379560093CB7F /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +190,7 @@
 				6AEC7FE51F422B75000BBD04 /* FlickrCollectionViewCell.m in Sources */,
 				6AEC7FCB1F422124000BBD04 /* AppDelegate.m in Sources */,
 				6AEC7FC81F422124000BBD04 /* main.m in Sources */,
+				722EDA551F438D260093CB7F /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +347,7 @@
 				6AEC7FDF1F422124000BBD04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

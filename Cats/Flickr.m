@@ -3,7 +3,7 @@
 //  Cats
 //
 //  Created by Elle Ti on 2017-08-14.
-//  Copyright © 2017 Elle Ti. All rights reserved.
+//  Copyright © 2017 Hirad Harandian. All rights reserved.
 //
 
 #import "Flickr.h"
@@ -19,6 +19,11 @@
         _server = [dictionary objectForKey:@"server"];
         _secret = [dictionary objectForKey:@"secret"];
         _title = [dictionary objectForKey:@"title"];
+        _latitude = [[dictionary objectForKey:@"latitude"] doubleValue];
+        _longitude = [[dictionary objectForKey:@"longitude"] doubleValue];
+        _coordinate = CLLocationCoordinate2DMake(self.latitude, self.longitude);
+
+        
     }
     return self;
 }
@@ -30,5 +35,13 @@
     NSURL *urlString = [NSURL URLWithString:string];
     return urlString;
 }
+
+//- (NSString *)title {
+//    return _title;
+//}
+//
+//- (CLLocationCoordinate2D)coordinate {
+//    return _coordinate;
+//}
 
 @end

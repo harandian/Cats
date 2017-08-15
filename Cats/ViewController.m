@@ -3,12 +3,13 @@
 //  Cats
 //
 //  Created by Elle Ti on 2017-08-14.
-//  Copyright © 2017 Elle Ti. All rights reserved.
+//  Copyright © 2017 Hirad Harandian. All rights reserved.
 //
 
 #import "ViewController.h"
 #import "Flickr.h"
 #import "FlickrCollectionViewCell.h"
+#import "DetailViewController.h"
 
 @interface ViewController () <UICollectionViewDataSource>
 
@@ -35,7 +36,7 @@
 {
     self.flickrArray = [NSMutableArray array];
     
-    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=759da7ef2198dfc69eeaac5f46dd486f&tags=cats"];
+    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=51fe506858b9869a0fb583d7f206ef60&tags=cat&has_geo=1&extras=url_m%2C+geo&format=json&nojsoncallback=1&auth_token=72157687553703346-0cd04e245f0ba204&api_sig=232733fb053c7bc850c75c29154fd101"];
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -55,6 +56,8 @@
             {
                 Flickr * image = [[Flickr alloc] initWithDictionary:flickr];
                 [self.flickrArray addObject:image];
+                NSLog(@"%@",self.flickrArray);
+
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 [self.collectionView reloadData];
@@ -62,6 +65,8 @@
         }
     }];
     [dataTask resume];
+    
+    
 }
 
 #pragma mark - Flickr Data Source
@@ -105,6 +110,21 @@
     
     return cell;
 }
+
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+   DetailViewController *detailViewController = [segue destinationViewController];
+   
+    NSIndexPath *indexPath = [self.collectionView indexPathsForSelectedItems].firstObject;
+    
+    Flickr *photoToShow = self.flickrArray[indexPath.item];
+    
+    detailViewController.photoToShow = photoToShow;
+    
+    
+}
+
 
 
 @end
