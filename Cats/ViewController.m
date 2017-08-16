@@ -11,6 +11,7 @@
 #import "FlickrCollectionViewCell.h"
 #import "DetailViewController.h"
 #import "SearchViewController.h"
+#import "ShowAllViewController.h"
 
 @interface ViewController () <UICollectionViewDataSource, setLocation>
 
@@ -45,12 +46,12 @@
     
     if (self.isNew == NO) {
     
-        url = [NSURL URLWithString: @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5142218342723e79cdf2adb6b8b42faf&has_geo=1&extras=url_m%2C+geo&format=json&nojsoncallback=1&auth_token=72157684916176931-fd15a8a1898fb1ce&api_sig=e1f8ad9f62592ca3360cb1cee1040f16&tags=cat"];
+        url = [NSURL URLWithString: @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=54343404f4d0cec33556c0d1ffb4164a&has_geo=1&extras=url_m%2C+geo&format=json&nojsoncallback=1"];
     }
     
     if (self.isNew == YES) {
         
-        NSString *tagReplace = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5142218342723e79cdf2adb6b8b42faf&has_geo=&extras=url_m%%2C+geo&format=json&nojsoncallback=1%@%@";
+        NSString *tagReplace = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=54343404f4d0cec33556c0d1ffb4164a&has_geo=1&extras=url_m%%2C+geo&format=json&nojsoncallback=1%@%@";
         
         tagReplace = [NSString stringWithFormat:tagReplace, self.tags, self.location];
        // tagReplace = [tagReplace stringByReplacingOccurrencesOfString:@"&tags=cat" withString:self.tags];
@@ -154,6 +155,13 @@
         SearchViewController *searchViewController = [segue destinationViewController];
         [searchViewController setDelegate:self];
         
+    }
+    
+    if ([segue.identifier isEqual:@"showAll"]) {
+        
+        ShowAllViewController *showAllViewController = [segue destinationViewController];
+        
+        showAllViewController.pinArray = [NSArray arrayWithArray:self.flickrArray];
     }
     
 }

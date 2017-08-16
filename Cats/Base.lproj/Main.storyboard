@@ -86,6 +86,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="EU7-XM-7uj">
+                        <barButtonItem key="leftBarButtonItem" title="Show All" id="bh6-8W-A29">
+                            <inset key="imageInsets" minX="-6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <connections>
+                                <segue destination="IFl-iz-62h" kind="show" identifier="showAll" id="F7M-sJ-ovh"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="dQy-em-W74">
                             <connections>
                                 <segue destination="Bxq-cK-vFp" kind="presentation" identifier="search" id="77a-Ta-2mu"/>
@@ -99,6 +105,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="840.79999999999995" y="122.78860569715144"/>
+        </scene>
+        <!--Show All View Controller-->
+        <scene sceneID="EwT-WK-fWY">
+            <objects>
+                <viewController id="IFl-iz-62h" customClass="ShowAllViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7MC-mi-bEU"/>
+                        <viewControllerLayoutGuide type="bottom" id="tls-gy-4Iz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hCK-w2-OhU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JLo-fi-DGM">
+                                <rect key="frame" x="16" y="64" width="343" height="603"/>
+                                <connections>
+                                    <outlet property="delegate" destination="IFl-iz-62h" id="YCV-Hh-2Kf"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tls-gy-4Iz" firstAttribute="top" secondItem="JLo-fi-DGM" secondAttribute="bottom" id="PR9-Ic-ZfE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JLo-fi-DGM" secondAttribute="trailing" id="Rhg-4b-PwZ"/>
+                            <constraint firstItem="JLo-fi-DGM" firstAttribute="leading" secondItem="hCK-w2-OhU" secondAttribute="leadingMargin" id="VvC-0F-ZSz"/>
+                            <constraint firstItem="JLo-fi-DGM" firstAttribute="top" secondItem="7MC-mi-bEU" secondAttribute="bottom" id="a3u-ng-9uZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="showAllMap" destination="JLo-fi-DGM" id="mFu-9H-2S6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="370-N7-2kb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="939"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="Xg4-bC-DjP">

@@ -55,6 +55,15 @@
         pinView = [[MKPinAnnotationView alloc] initWithAnnotation:self.photoToShow reuseIdentifier:RedPin];
         pinView.pinTintColor = [UIColor magentaColor];
         pinView.animatesDrop = YES;
+        UILabel *lblName=[[UILabel alloc] init];
+        lblName.font=[UIFont systemFontOfSize:12];
+        lblName.textAlignment=UITextAlignmentCenter;
+        lblName.textColor=[UIColor whiteColor];
+        lblName.backgroundColor=[UIColor clearColor];
+        lblName.text= self.photoToShow.title;
+        [pinView addSubview:lblName];
+        pinView.canShowCallout = YES;
+        [pinView setEnabled:YES];
     }
     return pinView;
 }
