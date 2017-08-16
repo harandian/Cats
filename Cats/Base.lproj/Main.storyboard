@@ -66,7 +66,7 @@
                                         <connections>
                                             <outlet property="flickrImage" destination="Vzf-Mu-Y6U" id="vL3-Sv-EZs"/>
                                             <outlet property="flickrLabel" destination="4sk-4O-9Iz" id="aSm-AK-vyf"/>
-                                            <segue destination="JKf-4O-zvR" kind="show" id="Zms-c9-ZKA"/>
+                                            <segue destination="JKf-4O-zvR" kind="show" identifier="detail" id="Zms-c9-ZKA"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -85,7 +85,13 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Fbb-B8-jic" secondAttribute="bottom" id="zkB-2k-Eoq"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="EU7-XM-7uj"/>
+                    <navigationItem key="navigationItem" id="EU7-XM-7uj">
+                        <barButtonItem key="rightBarButtonItem" title="Search" id="dQy-em-W74">
+                            <connections>
+                                <segue destination="Bxq-cK-vFp" kind="presentation" identifier="search" id="77a-Ta-2mu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Fbb-B8-jic" id="rvl-Bx-lzf"/>
                     </connections>
@@ -93,6 +99,69 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="840.79999999999995" y="122.78860569715144"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="Xg4-bC-DjP">
+            <objects>
+                <viewController id="Bxq-cK-vFp" customClass="SearchViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7hD-1H-a6S"/>
+                        <viewControllerLayoutGuide type="bottom" id="ygU-v4-YEO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8Ma-cq-OfX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OhA-K2-DfT">
+                                <rect key="frame" x="16" y="318" width="343" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Bxq-cK-vFp" id="8V2-Yn-r3c"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TeP-ca-zbM">
+                                <rect key="frame" x="16" y="368" width="343" height="30"/>
+                                <state key="normal" title="Search"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F8b-T5-Bnj">
+                                <rect key="frame" x="168.5" y="413" width="37" height="30"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="disMiss:" destination="Bxq-cK-vFp" eventType="touchUpInside" id="v7c-SV-ZBu"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gNw-vD-HHk">
+                                <rect key="frame" x="163" y="237" width="51" height="31"/>
+                                <connections>
+                                    <action selector="location:" destination="Bxq-cK-vFp" eventType="valueChanged" id="2Zk-U7-JzB"/>
+                                </connections>
+                            </switch>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TeP-ca-zbM" firstAttribute="top" secondItem="OhA-K2-DfT" secondAttribute="bottom" constant="20" id="1m6-t1-6pl"/>
+                            <constraint firstItem="TeP-ca-zbM" firstAttribute="leading" secondItem="8Ma-cq-OfX" secondAttribute="leadingMargin" id="1tg-Yc-isN"/>
+                            <constraint firstItem="OhA-K2-DfT" firstAttribute="leading" secondItem="8Ma-cq-OfX" secondAttribute="leadingMargin" id="3MS-I8-b4T"/>
+                            <constraint firstItem="F8b-T5-Bnj" firstAttribute="centerX" secondItem="TeP-ca-zbM" secondAttribute="centerX" id="F1v-k8-Vmq"/>
+                            <constraint firstItem="OhA-K2-DfT" firstAttribute="centerX" secondItem="8Ma-cq-OfX" secondAttribute="centerX" id="J1Z-p0-QYy"/>
+                            <constraint firstItem="gNw-vD-HHk" firstAttribute="leading" secondItem="8Ma-cq-OfX" secondAttribute="leadingMargin" constant="147" id="L5F-Gj-Vkx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gNw-vD-HHk" secondAttribute="trailing" constant="147" id="Vj9-32-dsX"/>
+                            <constraint firstItem="OhA-K2-DfT" firstAttribute="top" secondItem="gNw-vD-HHk" secondAttribute="bottom" constant="50" id="cHB-qm-ZUU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OhA-K2-DfT" secondAttribute="trailing" id="fUO-9m-G7f"/>
+                            <constraint firstItem="F8b-T5-Bnj" firstAttribute="top" secondItem="TeP-ca-zbM" secondAttribute="bottom" constant="15" id="htI-ZB-xAQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TeP-ca-zbM" secondAttribute="trailing" id="ikY-M9-O6o"/>
+                            <constraint firstItem="OhA-K2-DfT" firstAttribute="centerY" secondItem="8Ma-cq-OfX" secondAttribute="centerY" id="ykE-av-pZh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="searchField" destination="OhA-K2-DfT" id="gNG-Hr-MOo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8CH-1n-CsO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="-678"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="hSO-xO-NMr">

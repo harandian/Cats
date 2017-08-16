@@ -10,11 +10,15 @@
 #import "Flickr.h"
 #import "FlickrCollectionViewCell.h"
 #import "DetailViewController.h"
+#import "SearchViewController.h"
 
-@interface ViewController () <UICollectionViewDataSource>
+@interface ViewController () <UICollectionViewDataSource, setLocation>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *flickrArray;
+@property (nonatomic, strong) NSString *location;
+@property (nonatomic, strong) NSString *tags;
+@property BOOL isNew;
 
 @end
 
@@ -22,7 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isNew = NO;
     [self URLSetup];
+    
 }
 
 
@@ -34,9 +40,29 @@
 #pragma mark - URL Request Info
 - (void)URLSetup
 {
-    self.flickrArray = [NSMutableArray array];
     
-    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=51fe506858b9869a0fb583d7f206ef60&tags=cat&has_geo=1&extras=url_m%2C+geo&format=json&nojsoncallback=1&auth_token=72157687553703346-0cd04e245f0ba204&api_sig=232733fb053c7bc850c75c29154fd101"];
+    NSURL *url = [NSURL new];
+    
+    if (self.isNew == NO) {
+    
+        url = [NSURL URLWithString: @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5142218342723e79cdf2adb6b8b42faf&has_geo=1&extras=url_m%2C+geo&format=json&nojsoncallback=1&auth_token=72157684916176931-fd15a8a1898fb1ce&api_sig=e1f8ad9f62592ca3360cb1cee1040f16&tags=cat"];
+    }
+    
+    if (self.isNew == YES) {
+        
+        NSString *tagReplace = @"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=5142218342723e79cdf2adb6b8b42faf&has_geo=&extras=url_m%%2C+geo&format=json&nojsoncallback=1%@%@";
+        
+        tagReplace = [NSString stringWithFormat:tagReplace, self.tags, self.location];
+       // tagReplace = [tagReplace stringByReplacingOccurrencesOfString:@"&tags=cat" withString:self.tags];
+        
+        
+        
+        
+        url = [NSURL URLWithString: tagReplace];
+        
+        NSLog(@"%@", url);
+    }
+    
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -52,11 +78,12 @@
             NSDictionary *photoDictionary = jsonDictionary[@"photos"];
             NSMutableArray *photoArray = photoDictionary[@"photo"];
             
+            self.flickrArray = [NSMutableArray array];
+
             for (NSDictionary *flickr in photoArray)
             {
                 Flickr * image = [[Flickr alloc] initWithDictionary:flickr];
                 [self.flickrArray addObject:image];
-                NSLog(@"%@",self.flickrArray);
 
             }
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
@@ -114,15 +141,52 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-   DetailViewController *detailViewController = [segue destinationViewController];
-   
-    NSIndexPath *indexPath = [self.collectionView indexPathsForSelectedItems].firstObject;
+
     
-    Flickr *photoToShow = self.flickrArray[indexPath.item];
+    if ([segue.identifier isEqual: @"detail"]) {
+        DetailViewController *detailViewController = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.collectionView indexPathsForSelectedItems].firstObject;
+        Flickr *photoToShow = self.flickrArray[indexPath.item];
+        detailViewController.photoToShow = photoToShow;
+    }
     
-    detailViewController.photoToShow = photoToShow;
+    if ([segue.identifier isEqual: @"search"]) {
+        SearchViewController *searchViewController = [segue destinationViewController];
+        [searchViewController setDelegate:self];
+        
+    }
     
+}
+
+- (void)sendData:(CLLocationCoordinate2D)currentLocation {
     
+    double lon = currentLocation.longitude;
+    double lat = currentLocation.latitude;
+    
+    NSLog(@"this is long %.2f, the lat is %.2f",lon,lat);
+    
+    self.location = [NSString new];
+    self.location = [NSString stringWithFormat:@"&lat=%f&lon=%f",lat,lon];
+    NSLog(@"%@",self.location);
+    
+}
+
+- (void)sendTags:(NSString *)tags {
+    
+    if (tags == nil) {
+    
+        self.tags = @"&tags=cat";
+        
+    }
+    self.tags = [NSString stringWithFormat:@"&tags=%@",tags];
+
+}
+
+-(void)setBool {
+    
+    self.isNew = YES;
+    [self URLSetup];
+
 }
 
 

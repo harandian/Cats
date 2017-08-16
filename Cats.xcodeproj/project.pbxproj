@@ -19,6 +19,8 @@
 		722EDA501F4379560093CB7F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722EDA4F1F4379560093CB7F /* MapKit.framework */; };
 		722EDA521F43795B0093CB7F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 722EDA511F43795B0093CB7F /* CoreLocation.framework */; };
 		722EDA551F438D260093CB7F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 722EDA541F438D260093CB7F /* DetailViewController.m */; };
+		72C74EA21F43A6CF00DC4BB1 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C74EA11F43A6CF00DC4BB1 /* SearchViewController.m */; };
+		72C74EA81F43BA0A00DC4BB1 /* MyLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C74EA71F43BA0A00DC4BB1 /* MyLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,10 @@
 		722EDA511F43795B0093CB7F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		722EDA531F438D260093CB7F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		722EDA541F438D260093CB7F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		72C74EA01F43A6CF00DC4BB1 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		72C74EA11F43A6CF00DC4BB1 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		72C74EA61F43BA0A00DC4BB1 /* MyLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLocationManager.h; path = ../MyLocationManager.h; sourceTree = "<group>"; };
+		72C74EA71F43BA0A00DC4BB1 /* MyLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLocationManager.m; path = ../MyLocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +89,10 @@
 				6AEC7FCF1F422124000BBD04 /* Main.storyboard */,
 				722EDA531F438D260093CB7F /* DetailViewController.h */,
 				722EDA541F438D260093CB7F /* DetailViewController.m */,
+				72C74EA01F43A6CF00DC4BB1 /* SearchViewController.h */,
+				72C74EA11F43A6CF00DC4BB1 /* SearchViewController.m */,
+				72C74EA61F43BA0A00DC4BB1 /* MyLocationManager.h */,
+				72C74EA71F43BA0A00DC4BB1 /* MyLocationManager.m */,
 				6AEC7FE01F422B64000BBD04 /* Flickr.h */,
 				6AEC7FE11F422B64000BBD04 /* Flickr.m */,
 				6AEC7FE31F422B75000BBD04 /* FlickrCollectionViewCell.h */,
@@ -190,6 +200,8 @@
 				6AEC7FE51F422B75000BBD04 /* FlickrCollectionViewCell.m in Sources */,
 				6AEC7FCB1F422124000BBD04 /* AppDelegate.m in Sources */,
 				6AEC7FC81F422124000BBD04 /* main.m in Sources */,
+				72C74EA81F43BA0A00DC4BB1 /* MyLocationManager.m in Sources */,
+				72C74EA21F43A6CF00DC4BB1 /* SearchViewController.m in Sources */,
 				722EDA551F438D260093CB7F /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
